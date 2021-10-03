@@ -1,15 +1,12 @@
+import { observer } from "mobx-react-lite";
 import React, { ChangeEvent, useState } from "react";
 import { Button, Form, Segment } from "semantic-ui-react";
-import { Activity } from "../../../app/models/activity";
+import { useStore } from "../../../app/stores/store";
 
-interface Props{
-    closeForm: () => void;
-    activity: Activity | undefined;
-    createOrEdit: (activity: Activity) =>void;
-    submitting: boolean;
-}
 
-export default function ActivityForm({closeForm,activity : selectedActivity,createOrEdit,submitting}:Props) {
+export default observer( function ActivityForm() {
+    const {activityStore} = useStore();
+    const {selectedActivity, closeForm,loading,createActivity,updateActivity} = activityStore;
 
     const initialState = selectedActivity ?? { // inicijalno stanje je selectedActivity, ako je ima, a ako nema onda postavimo strukturu sa praznim stringovima!
         id: '',
@@ -24,7 +21,7 @@ export default function ActivityForm({closeForm,activity : selectedActivity,crea
     const [activity,setActivity] = useState(initialState);
 
     function handleSubmit(){
-        createOrEdit(activity);
+        activity.id ? updateActivity(activity) : createActivity(activity);
     }
 
     function handleinputChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>){  // | je unija, tj. znači da event može biti ili Input elem ili TextArea elem!
@@ -41,9 +38,9 @@ export default function ActivityForm({closeForm,activity : selectedActivity,crea
                 <Form.Input type='date' placeholder='Date'value={activity.date} name='date' onChange={handleinputChange}/>
                 <Form.Input placeholder='City'value={activity.city} name='city' onChange={handleinputChange}/>
                 <Form.Input placeholder='Venue'value={activity.venue} name='venue' onChange={handleinputChange}/>
-                <Button loading={submitting} floated='right' positive type='submit' content='Submit' />
+                <Button loading={loading} floated='right' positive type='submit' content='Submit' />
                 <Button onClick={closeForm } floated='right' content='Cancel' />
             </Form>
         </Segment>
     )
-}
+})
