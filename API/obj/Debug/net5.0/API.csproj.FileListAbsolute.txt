@@ -65,3 +65,6 @@ D:\MyProjectsDev\Reactivities\API\bin\Debug\net5.0\MediatR.dll
 D:\MyProjectsDev\Reactivities\API\bin\Debug\net5.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
 D:\MyProjectsDev\Reactivities\API\bin\Debug\net5.0\AutoMapper.dll
 D:\MyProjectsDev\Reactivities\API\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\MyProjectsDev\Reactivities\API\bin\Debug\net5.0\FluentValidation.dll
+D:\MyProjectsDev\Reactivities\API\bin\Debug\net5.0\FluentValidation.AspNetCore.dll
+D:\MyProjectsDev\Reactivities\API\bin\Debug\net5.0\FluentValidation.DependencyInjectionExtensions.dll
